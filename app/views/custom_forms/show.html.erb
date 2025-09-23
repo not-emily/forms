@@ -1,0 +1,99 @@
+<div class="d-flex flex-column flex-column-fluid">
+    <!--begin::Toolbar-->
+    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+        <!--begin::Toolbar container-->
+        <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
+            <!--begin::Page title-->
+            <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                <!--begin::Title-->
+                <div class="d-flex align-items-center">
+                    <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0 me-3"><%= @form.name %></h1>
+                    <span class="badge badge-light-success me-auto"><%= @form.status.titleize %></span>
+                </div>
+                <!--end::Title-->
+                <!--begin::Breadcrumb-->
+                <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item text-muted">
+                        <a href="index.html" class="text-muted text-hover-primary">Home</a>
+                    </li>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item">
+                        <span class="bullet bg-gray-500 w-5px h-2px"></span>
+                    </li>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item text-muted">Forms</li>
+                    <!--end::Item-->
+                </ul>
+                <!--end::Breadcrumb-->
+            </div>
+            <!--end::Page title-->
+            <!--begin::Actions-->
+            <div class="d-flex align-items-center gap-2 gap-lg-3">
+                <!--begin::Filter menu-->
+                <div class="d-flex">
+                    <select name="campaign-type" data-control="select2" data-hide-search="true" class="form-select form-select-sm bg-body border-body w-175px">
+                        <option value="Twitter" selected="selected">Select Campaign</option>
+                        <option value="Twitter">Twitter Campaign</option>
+                        <option value="Twitter">Facebook Campaign</option>
+                        <option value="Twitter">Adword Campaign</option>
+                        <option value="Twitter">Carbon Campaign</option>
+                    </select>
+                    <a href="#" class="btn btn-icon btn-sm btn-success flex-shrink-0 ms-4" data-bs-toggle="modal" data-bs-target="#kt_modal_create_campaign">
+                        <i class="ki-duotone ki-plus fs-2"></i>
+                    </a>
+                </div>
+                <!--end::Filter menu-->
+                <!--begin::Secondary button-->
+                <!--end::Secondary button-->
+                <!--begin::Primary button-->
+                <!--end::Primary button-->
+            </div>
+            <!--end::Actions-->
+        </div>
+        <!--end::Toolbar container-->
+    </div>
+    <!--end::Toolbar-->
+    <!--begin::Content-->
+    <div id="kt_app_content" class="app-content flex-column-fluid">
+        <!--begin::Content container-->
+        <div id="kt_app_content_container" class="app-container container-xxl">
+            <div class="card-rounded bg-light d-flex flex-stack flex-wrap p-5">
+                <!--begin::Nav-->
+                <ul class="nav flex-wrap border-transparent fw-bold" role="tablist">
+                    <!--begin::Nav item-->
+                    <li class="nav-item my-1">
+                        <button class="btn btn-color-gray-600 btn-active-secondary btn-active-color-primary fw-bolder fs-8 fs-lg-base nav-link px-3 px-lg-8 mx-1 text-uppercase active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="true">Overview</button>
+                    </li>
+                    <!--end::Nav item-->
+                    <!--begin::Nav item-->
+                    <li class="nav-item my-1">
+                        <button class="btn btn-color-gray-600 btn-active-secondary btn-active-color-primary fw-bolder fs-8 fs-lg-base nav-link px-3 px-lg-8 mx-1 text-uppercase" id="form-builder-tab" data-bs-toggle="tab" data-bs-target="#form-builder" type="button" role="tab" aria-controls="form-builder" aria-selected="false">Form Builder</button>
+                    </li>
+                    <!--end::Nav item-->
+                </ul>
+                <!--end::Nav-->   
+
+                <!--begin::Action-->
+                <a href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_new_ticket" class="btn btn-primary fw-bold fs-8 fs-lg-base">Create Ticket</a>
+                <!--end::Action-->    
+            </div>
+            <div class="tab-content" id="myTabContent">
+                <!-- START OVERVIEW TAB --> 
+                <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                    <%= render 'custom_forms/show_tabs/overview' %>
+                </div>
+                <!-- END OVERVIEW TAB --> 
+                <!-- START FORM BUILDER TAB --> 
+                <div class="tab-pane fade" id="form-builder" role="tabpanel" aria-labelledby="form-builder-tab">
+                    <%= render 'custom_forms/show_tabs/form_builder' %>
+                </div>
+                <!-- END FORM BUILDER TAB --> 
+            </div>
+        </div>
+        <!--end::Content container-->
+    </div>
+    <!--end::Content-->
+</div>

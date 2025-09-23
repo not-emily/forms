@@ -1,0 +1,104 @@
+<div class="card card-flush mt-6 mt-xl-9">
+    <!--begin::Card header-->
+    <div class="card-header mt-5">
+        <!--begin::Card title-->
+        <div class="card-title flex-column">
+            <h3 class="fw-bold mb-1">Project Forms</h3>
+            <div class="fs-6 text-gray-500">Total $260,300 spent so far</div>
+        </div>
+        <!--begin::Card title-->
+        <!--begin::Card toolbar-->
+        <div class="card-toolbar my-1">
+            <!--begin::Select-->
+            <div class="me-6 my-1">
+                <select id="kt_filter_year" name="year" data-control="select2" data-hide-search="true" class="w-125px form-select form-select-solid form-select-sm">
+                    <option value="All" selected="selected">All time</option>
+                    <option value="thisyear">This year</option>
+                    <option value="thismonth">This month</option>
+                    <option value="lastmonth">Last month</option>
+                    <option value="last90days">Last 90 days</option>
+                </select>
+            </div>
+            <!--end::Select-->
+            <!--begin::Select-->
+            <div class="me-4 my-1">
+                <select id="kt_filter_orders" name="orders" data-control="select2" data-hide-search="true" class="w-125px form-select form-select-solid form-select-sm">
+                    <option value="All" selected="selected">All Orders</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Declined">Declined</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="In Transit">In Transit</option>
+                </select>
+            </div>
+            <!--end::Select-->
+            <!--begin::Search-->
+            <div class="d-flex align-items-center position-relative my-1">
+                <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-3">
+                    <span class="path1"></span>
+                    <span class="path2"></span>
+                </i>
+                <input type="text" id="kt_filter_search" class="form-control form-control-solid form-select-sm w-150px ps-9" placeholder="Search Order" />
+            </div>
+            <!--end::Search-->
+        </div>
+        <!--begin::Card toolbar-->
+    </div>
+    <!--end::Card header-->
+    <!--begin::Card body-->
+    <div class="card-body pt-0">
+        <!--begin::Table container-->
+        <div class="table-responsive">
+            <!--begin::Table-->
+            <table id="kt_profile_overview_table" class="table table-row-bordered table-row-dashed gy-4 align-middle fw-bold">
+                <thead class="fs-7 text-gray-500 text-uppercase">
+                    <tr>
+                        <th class="min-w-250px">Name</th>
+                        <th class="min-w-90px text-end">Submissions</th>
+                        <th class="min-w-90px text-end">Status</th>
+                        <th class="min-w-100px text-end">Last Updated</th>
+                        <th class="min-w-50px">Details</th>
+                    </tr>
+                </thead>
+                <tbody class="fs-6">
+                    <% @forms.each do |form| %>
+                    <tr>
+                        <td>
+                            <!--begin::User-->
+                            <div class="d-flex align-items-center">
+                                <!--begin::Wrapper-->
+                                <div class="me-5 position-relative">
+                                    <!--begin::Avatar-->
+                                    <div class="symbol symbol-35px symbol-circle">
+                                        <img alt="Pic" src="assets/media/avatars/300-6.jpg" />
+                                    </div>
+                                    <!--end::Avatar-->
+                                </div>
+                                <!--end::Wrapper-->
+                                <!--begin::Info-->
+                                <div class="d-flex flex-column justify-content-center">
+                                    <a href="<%= show_form_path(params[:project_apikey], form.apikey) %>" class="fs-6 text-gray-800 text-hover-primary"><%= form.name %></a>
+                                    <div class="fw-semibold text-gray-500">smith@kpmg.com</div>
+                                </div>
+                                <!--end::Info-->
+                            </div>
+                            <!--end::User-->
+                        </td>
+                        <td class="text-end"><%= form.form_submissions.count %></td>
+                        <td class="text-end">
+                            <span class="badge badge-light-info fw-bold px-4 py-3"><%= form.status.titleize %></span>
+                        </td>
+                        <td class="text-end"><%= form.updated_at.strftime("%b %d, %Y") %></td>
+                        <td>
+                            <a href="<%= show_form_path(params[:project_apikey], form.apikey) %>" class="btn btn-light btn-sm">View</a>
+                        </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <!--end::Table-->
+        </div>
+        <!--end::Table container-->
+    </div>
+    <!--end::Card body-->
+
+</div>

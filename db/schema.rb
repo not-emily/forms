@@ -10,8 +10,104 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 0) do
+ActiveRecord::Schema[7.1].define(version: 2025_09_19_175633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_users", force: :cascade do |t|
+    t.integer "account_id"
+    t.integer "user_id"
+    t.string "status"
+    t.string "role"
+    t.boolean "owner"
+    t.string "apikey"
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "account_id"], name: "index_account_users_on_user_id_and_account_id", unique: true
+  end
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "name"
+    t.string "subscription_key"
+    t.string "stripe_price_id"
+    t.string "apikey"
+    t.string "token"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "custom_forms", force: :cascade do |t|
+    t.string "name"
+    t.integer "project_id"
+    t.string "description"
+    t.string "apikey"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["apikey"], name: "index_custom_forms_on_apikey"
+  end
+
+  create_table "form_fields", force: :cascade do |t|
+    t.integer "custom_form_id"
+    t.string "name"
+    t.string "field_id"
+    t.string "field_type"
+    t.integer "col_width"
+    t.boolean "required", default: false
+    t.string "placeholder"
+    t.boolean "label_as_placeholder", default: false
+    t.integer "order_num"
+    t.string "apikey"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["apikey"], name: "index_form_fields_on_apikey"
+  end
+
+  create_table "form_submissions", force: :cascade do |t|
+    t.integer "custom_form_id"
+    t.string "raw_data"
+    t.string "apikey"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["apikey"], name: "index_form_submissions_on_apikey"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.integer "account_id"
+    t.string "name"
+    t.string "apikey"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["apikey"], name: "index_projects_on_apikey"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "mobile"
+    t.string "password_hash"
+    t.string "password_salt"
+    t.string "password_reset_key"
+    t.datetime "password_reset_expires"
+    t.datetime "last_active", default: -> { "CURRENT_TIMESTAMP" }
+    t.string "address1"
+    t.string "address2"
+    t.string "city"
+    t.string "state"
+    t.string "postal"
+    t.string "gsi_pic"
+    t.string "gsi_sub"
+    t.string "apikey"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["apikey"], name: "index_users_on_apikey"
+  end
 
 end
