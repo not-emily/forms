@@ -219,7 +219,7 @@
                                 <!--end::Wrapper-->
                                 <!--begin::Info-->
                                 <div class="d-flex flex-column justify-content-center">
-                                    <a href="" class="fs-6 text-gray-800 text-hover-primary"><%= submission.name %></a>
+                                    <a href="<%= show_form_submission_path(params[:project_apikey], @form.apikey, submission.apikey) %>" class="fs-6 text-gray-800 text-hover-primary"><%= submission.name %></a>
                                     <div class="fw-semibold text-gray-500">smith@kpmg.com</div>
                                 </div>
                                 <!--end::Info-->
@@ -232,7 +232,7 @@
                         </td>
                         <td class="text-end"><%= submission.created_at.strftime("%b %d, %Y") %></td>
                         <td>
-                            <a href="" class="btn btn-light btn-sm">View</a>
+                            <a href="<%= show_form_submission_path(params[:project_apikey], @form.apikey, submission.apikey) %>" class="btn btn-light btn-sm">View</a>
                         </td>
                     </tr>
                     <% end %>

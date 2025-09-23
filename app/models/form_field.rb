@@ -117,6 +117,7 @@ class FormField < ApplicationRecord
         self.order_num = FormField.for_form(self.custom_form_id).all.count + 1
     end
 
+    # TODO: Make this unique to the field
     def set_field_id
         self.field_id = self.name.downcase.gsub(" ", "_")
     end

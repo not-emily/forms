@@ -1,4 +1,16 @@
 module CustomFormsHelper
+    def form_html(form)
+        html = "<form action='http://localhost:3000/api/v1/form-submission/#{form.apikey}' method='post'>"
+        form.form_fields.each do |field|
+            html += form_field(field)
+            html += "<input type='hidden' id='response[#{field.field_id}][field_type]' name='response[#{field.field_id}][field_type]' value='#{field.field_type}' />"
+            html += "<input type='hidden' id='response[#{field.field_id}][name]' name='response[#{field.field_id}][name]' value='#{field.name}' />"
+        end
+        html += "<button type='submit'>Submit</button>"
+        html += "\n</form>"
+        return html
+    end
+
     # CONTROLLER
     def form_field(field)
         field_type = FormField::TYPES[field.field_type]

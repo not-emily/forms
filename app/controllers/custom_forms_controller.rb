@@ -136,7 +136,7 @@ class CustomFormsController < ApplicationController
     # Form Submissions
     #
     def show_form_submission
-        @submission = FormSubmission.find_by_apikey(params[:submission_apikey])
+        @submission = FormSubmission.find_by_apikey(params[:form_submission_apikey])
 
         @data = @submission.data
     end

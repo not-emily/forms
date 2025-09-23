@@ -39,4 +39,14 @@ Rails.application.routes.draw do
   # FORM FIELDS
   get '/projects/:project_apikey/:form_apikey/new-form-field', to: "custom_forms#new_form_field", as: :new_form_field
   post '/projects/:project_apikey/:form_apikey/new-form-field', to: "custom_forms#create_form_field", as: :create_form_field
+
+  # FORM SUBMISSIONS
+  get '/projects/:project_apikey/:form_apikey/submission/:form_submission_apikey', to: "custom_forms#show_form_submission", as: :show_form_submission
+
+  namespace :api do
+    namespace :v1 do # Optional: API versioning
+      get '/hello-world', to: 'custom_forms#hello_world'
+      post '/form-submission/:form_apikey', to: 'custom_forms#form_submission'
+    end
+  end
 end
