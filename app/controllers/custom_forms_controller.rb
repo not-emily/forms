@@ -129,6 +129,16 @@ class CustomFormsController < ApplicationController
             flash[:error] = "Couldn't find form. #{form.errors.full_messages}"
         end
     end
+    
+    def destroy_form_field
+        project = Project.find_by_apikey(params[:project_apikey])
+        form = CustomForm.find_by_apikey(params[:form_apikey])
+        field = FormField.find_by_apikey(params[:form_field_apikey])
+        if field.destroy
+            flash[:success] = "Form field deleted."
+            redirect_to show_form_path(project.apikey, form.apikey) + "#form-builder"
+        end
+    end
 
     def reorder_form_fields
         items = parse_md_array(params[:items_order])

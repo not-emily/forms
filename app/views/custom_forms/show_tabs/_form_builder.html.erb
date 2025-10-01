@@ -24,7 +24,7 @@
                     <div class="form-field__edit-overlay btn-group">
                         <a href="<%= edit_form_field_path(params[:project_apikey], @form.apikey, field.apikey) %>" class="edit-overlay__btn btn btn-sm btn-light-primary">Edit</a>
                         <button class="edit-overlay__btn btn btn-sm btn-light-primary" data-overlay-action="move">Move</button>
-                        <button class="edit-overlay__btn btn btn-sm btn-light-danger" data-overlay-action="destroy">Destroy</button>
+                        <button class="edit-overlay__btn btn btn-sm btn-light-danger" data-overlay-action="destroy" data-field="<%= field.to_json(:only => [:apikey, :name]) %>">Destroy</button>
                     </div>
                     <%= form_field(field) %>
                     <input type="hidden" id="response[<%= field.field_id %>][field_type]" name="response[<%= field.field_id %>][field_type]" value="<%= field.field_type %>" />

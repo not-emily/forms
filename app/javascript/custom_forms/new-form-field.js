@@ -18,6 +18,21 @@
         // Decide if we need to allow user to enter field children
         has_children == "true" ? showChildren() : hideChildren();
     })
+
+    // Confirm delete
+    const form_fields_preview = document.getElementById('form-fields-preview');
+    form_fields_preview.addEventListener('click', (e) => {
+        if (e.target.classList.contains('edit-overlay__btn') && e.target.dataset.overlayAction == "destroy") {
+            let field = JSON.parse(e.target.dataset.field)
+            let confirmation = confirm(`Are you sure you want to remove this ${field.name} field?`)
+            if (confirmation) {
+                let path = window.location.pathname.split('/')
+                let p = path[2]
+                let f = path[3]
+                window.location.replace(`${window.location.protocol}//${window.location.host}/projects/${p}/${f}/${field.apikey}/destroy`);
+            }
+        }
+    })
 }());
 
 /*

@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   post '/projects/:project_apikey/:form_apikey/new-form-field', to: "custom_forms#create_form_field", as: :create_form_field
   get  '/projects/:project_apikey/:form_apikey/:form_field_apikey/edit', to: "custom_forms#edit_form_field", as: :edit_form_field
   post '/projects/:project_apikey/:form_apikey/:form_field_apikey/edit', to: "custom_forms#update_form_field", as: :update_form_field
+  get  '/projects/:project_apikey/:form_apikey/:form_field_apikey/destroy', to: "custom_forms#destroy_form_field", as: :destroy_form_field
 
   # FORM SUBMISSIONS
   get '/projects/:project_apikey/:form_apikey/submission/:form_submission_apikey', to: "custom_forms#show_form_submission", as: :show_form_submission
