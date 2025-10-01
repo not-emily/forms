@@ -11,13 +11,17 @@
 
 .form-field {
     position: relative;
+    border: solid 1px transparent;
+    padding: 5px;
     & .form-field__edit-overlay {
         position: absolute;
-        top: 0;
-        right: 15px;
+        top: 5px;
+        right: 5px;
         display: none;
     }
     &:hover {
+        border: dashed 1px var(--bs-text-primary);
+        border-radius: 5px;
         & .form-field__edit-overlay {
             display: block;
         }
