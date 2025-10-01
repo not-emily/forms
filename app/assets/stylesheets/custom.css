@@ -8,3 +8,18 @@
         }
     }
 }
+
+.form-field {
+    position: relative;
+    & .form-field__edit-overlay {
+        position: absolute;
+        top: 0;
+        right: 15px;
+        display: none;
+    }
+    &:hover {
+        & .form-field__edit-overlay {
+            display: block;
+        }
+    }
+}

@@ -52,13 +52,13 @@ class CustomFormsController < ApplicationController
         form.name = params[:form_name]
 
         if form && form.save
-        flash[:success] = "Form updated."
-        redirect_to admin_custom_forms_path
+            flash[:success] = "Form updated."
+            redirect_to admin_custom_forms_path
         else
-        p "*" * 50
-        p "ERROR"
-        p "*" * 50
-        flash[:error] = "Couldn't save form. #{form.errors.full_messages}"
+            p "*" * 50
+            p "ERROR"
+            p "*" * 50
+            flash[:error] = "Couldn't save form. #{form.errors.full_messages}"
         end
     end
 
@@ -100,20 +100,33 @@ class CustomFormsController < ApplicationController
 
     def edit_form_field
         @form = CustomForm.find_by_apikey(params[:form_apikey])
+        @field = FormField.find_by_apikey(params[:form_field_apikey])
     end
 
     def update_form_field
+        project = Project.find_by_apikey(params[:project_apikey])
         form = CustomForm.find_by_apikey(params[:form_apikey])
-        form.name = params[:form_name]
+        form_field = FormField.find_by_apikey(params[:form_field_apikey])
+        if form_field && form && project
+            if form_field.update(form_field_params.merge(:custom_form_id => form.id))
+                field_children = params[:form_children]
+                if field_children
+                    field_children.each do |child|
+                        field_child = FormFieldChild.create(:name => child[1], :form_field_id => form_field.id)
+                        p field_child
+                    end
+                end
 
-        if form && form.save
-        flash[:success] = "Form updated."
-        redirect_to admin_custom_forms_path
+                flash[:success] = "Form field saved."
+                redirect_to show_form_path(project.apikey, form.apikey) + "#form-builder"
+            else
+                p "*" * 50
+                p "ERROR"
+                p "*" * 50
+                flash[:error] = "Couldn't save form field. #{form_field.errors.full_messages}"
+            end
         else
-        p "*" * 50
-        p "ERROR"
-        p "*" * 50
-        flash[:error] = "Couldn't save form. #{form.errors.full_messages}"
+            flash[:error] = "Couldn't find form. #{form.errors.full_messages}"
         end
     end
 

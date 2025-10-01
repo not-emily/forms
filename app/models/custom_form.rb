@@ -3,6 +3,8 @@ class CustomForm < ApplicationRecord
     has_many :form_fields
     has_many :form_submissions
 
+    validates :name, presence: true
+
     before_validation              :set_apikey,
     :on => :create
 
