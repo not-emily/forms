@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_09_19_175633) do
+ActiveRecord::Schema[7.1].define(version: 2025_10_01_164931) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,6 +47,18 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_19_175633) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["apikey"], name: "index_custom_forms_on_apikey"
+  end
+
+  create_table "form_field_children", force: :cascade do |t|
+    t.integer "form_field_id"
+    t.string "name"
+    t.string "field_id"
+    t.integer "order_num"
+    t.string "apikey"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["apikey"], name: "index_form_field_children_on_apikey"
   end
 
   create_table "form_fields", force: :cascade do |t|

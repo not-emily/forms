@@ -1,6 +1,6 @@
 class FormField < ApplicationRecord
     belongs_to :custom_form
-    # has_many :form_field_children
+    has_many :form_field_children
 
     before_validation              :set_apikey,
                                    :on => :create

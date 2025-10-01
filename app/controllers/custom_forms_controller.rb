@@ -77,13 +77,13 @@ class CustomFormsController < ApplicationController
             form_field = FormField.new(form_field_params.merge(:custom_form_id => form.id))
 
             if form_field.save
-                # field_children = params[:form_children]
-                # if field_children
-                # field_children.each do |child|
-                #     field_child = FormFieldChild.create(:name => child[1], :form_field_id => form_field.id)
-                #     p field_child
-                # end
-                # end
+                field_children = params[:form_children]
+                if field_children
+                field_children.each do |child|
+                    field_child = FormFieldChild.create(:name => child[1], :form_field_id => form_field.id)
+                    p field_child
+                end
+                end
 
                 flash[:success] = "Form field saved."
                 redirect_to show_form_path(project.apikey, form.apikey) + "#form-builder"

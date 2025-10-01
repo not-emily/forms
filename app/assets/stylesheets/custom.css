@@ -1,0 +1,10 @@
+#form-field-children--list {
+    & svg {
+        height: 20px;
+        width: 20px;
+        margin-left: 10px;
+        & path {
+            fill: var(--bs-text-danger);
+        }
+    }
+}
