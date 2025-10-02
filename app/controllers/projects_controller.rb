@@ -5,14 +5,6 @@ class ProjectsController < ApplicationController
     before_action :set_breadcrumbs
     layout 'dashboard'
 
-    def index
-        @projects = @current_account.projects
-        @users = @current_account.users
-        # TODO: Make this more interesting
-        @featured_project = @projects.first
-        @show_plan_upgrade = !@current_account.plan.business?
-    end
-
     def show
         @project = Project.find_by_apikey(params[:project_apikey])
         @forms = @project.custom_forms

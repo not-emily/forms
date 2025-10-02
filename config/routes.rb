@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  root "projects#index"
+  root "accounts#show"
 
   #
   # WELCOME 
@@ -27,9 +27,21 @@ Rails.application.routes.draw do
   post '/accounts/create/step-2', to: "accounts#create_account_2_do", as: :do_create_account_2
   get '/accounts/:id/select-plan', to: "accounts#select_plan", as: :select_plan
   get '/accounts/:account_token/select-plan/:plan_apikey', to: "accounts#select_plan_do", as: :do_select_plan
-  get '/accounts/invite/:invite_apikey/accept', to: 'accounts#accept_invite', as: :accept_invite
-  get '/accounts/invite/:invite_apikey/decline', to: 'accounts#decline_invite', as: :decline_invite
   get '/accounts/:id', to: "accounts#select_accounts_do", as: :do_select_accounts
+  
+  #
+  # USERS
+  #
+  get '/users/invites/:invite_apikey/accept', to: 'users#accept_invite', as: :accept_invite
+  get '/users/invites/:invite_apikey/decline', to: 'users#decline_invite', as: :decline_invite
+  get '/users/invites', to: 'users#invites', as: :invites
+  get '/users/invites/remove/:invite_apikey', to: 'users#remove_invite', as: :remove_invite
+  get '/users/invites/resend/:invite_apikey', to: 'users#resend_invite', as: :resend_invite
+  get '/users/new', to: 'users#new', as: :new_user
+  post '/users/new', to: 'users#new_do', as: :do_new_user
+  get '/users/:user_apikey/edit', to: 'users#edit', as: :edit_user
+  get '/users', to: 'users#index', as: :users
+  get '/users/:user_apikey', to: 'users#show', as: :show_user
 
   #
   # PROJECTS 

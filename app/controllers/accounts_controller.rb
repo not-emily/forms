@@ -4,6 +4,15 @@ class AccountsController < ApplicationController
     before_action :set_account, except: [:select_accounts, :select_accounts_do, :create_account_1, :create_account_1_do, :select_plan, :select_plan_do]
     layout 'auth'
     
+    def show
+        @projects = @current_account.projects
+        @users = @current_account.users
+        # TODO: Make this more interesting
+        @featured_project = @projects.first
+        @show_plan_upgrade = !@current_account.plan.business?
+        render layout: 'dashboard'
+    end
+
     def select_accounts
         @accounts = AccountUser.for_user(@current_user.id)
         # The user automatically gets an account created for them if they don't have one.
@@ -90,35 +99,4 @@ class AccountsController < ApplicationController
             redirect_to select_plan_path
         end
     end
-
-    def accept_invite
-        invite = AccountInvite.find_by_apikey(params[:invite_apikey])
-        if invite
-            accepted = invite.accept_invite
-            if accepted
-                flash[:notice] = "Successfully joined the #{invite.account.name} account!"
-            else
-                flash[:error] = "Unable to join the #{invite.account.name} account. Please try again later."
-            end
-        else
-            flash[:error] = "Unable to accept invite. Invite not found."
-        end
-        redirect_to account_selection_path
-    end
-    
-    def decline_invite
-        invite = AccountInvite.find_by_apikey(params[:invite_apikey])
-        if invite
-            declined = invite.decline_invite
-            if declined
-                flash[:notice] = "Successfully declined invitation"
-            else
-                flash[:error] = "Unable to decline the invitation. Please try again later."
-            end
-        else
-            flash[:error] = "Unable to decline invite. Invite not found."
-        end
-        redirect_to account_selection_path
-    end
-
 end
