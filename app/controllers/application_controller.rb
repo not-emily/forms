@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
     def set_account
         @current_account = Account.find(session[:current_account]["id"])
         @projects = @current_account.projects
+        if !@current_account.plan.present?
+            flash[:alert] = "Please select an plan to continue."
+            redirect_to select_plan_path(@current_account.token)
+        end
     end
 
     def authenticate_user

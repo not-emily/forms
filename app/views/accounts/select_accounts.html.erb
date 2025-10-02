@@ -1,31 +1,28 @@
-<div class="container">
-  <div class="col align-items-center">
-    <!--<%= render 'layouts/components/invites_notice', invites: @invites %>-->
-    <div class="row justify-content-center">
-        <div class="col-xl-5 col-lg-6 col-md-7">
-            <div class="text-center">
-              <h1 class="h2">Which account?</h1>
-              <div id="select-accounts" class="row g-2 justify-content-center">
-                <% @accounts.each do |account_user| %>
-                  <div class="col-12 col-md-6 my-2">
-                    <a href="<%= do_account_selection_path(account_user.account.token) %>">
-                      <div class="card p-2 h-100 d-flex align-items-center justify-content-center" style="border-top: solid 5px <%= account_user.account.primary_color_hex %>;">
-                      <% if account_user.account.logo.attached? %>
-                        <%= image_tag url_for(account_user.account.logo), height: 40, class:"mb-2" %>
+<div class="d-flex flex-center flex-column flex-lg-row-fluid">
+    <div class="w-lg-500px p-10">
+      <div class="container">
+        <div class="col align-items-center">
+          <!--<%= render 'layouts/components/invites_notice', invites: @invites %>-->
+                  <div class="text-center">
+                    <h1 class="h2">Which account?</h1>
+                    <div id="select-accounts" class="row g-2 justify-content-center">
+                      <% @accounts.each do |account_user| %>
+                        <div class="col-12 col-md-6 my-2">
+                          <a href="<%= do_select_accounts_path(account_user.account.token) %>">
+                            <div class="card p-2 h-100 d-flex align-items-center justify-content-center" style="">
+                              <%= account_user.account.name %>
+                              <small class="text-muted"><%= account_user.account.owner.name %></small>
+                            </div>
+                          </a>
+                        </div>
                       <% end %>
-                        <%= account_user.account.name %>
-                        <small class="text-muted"><%= account_user.account.owner.name %></small>
-                      </div>
-                    </a>
-                  </div>
-                <% end %>
-              </div>
-              <hr>
-              <p class="m-0">or</p>
-              <a class="btn btn-link" href="<%= create_account_1_path %>">Create a new account</a>
+                    </div>
+                    <hr>
+                    <p class="m-0">or</p>
+                    <a class="btn btn-link" href="<%= create_account_1_path %>">Create a new account</a>
 
-            </div>
-        </div>
+                  </div>
+              </div>
       </div>
+    </div>
   </div>
-</div>

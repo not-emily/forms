@@ -43,43 +43,61 @@ License: For each use you must have a valid license purchased only from above li
 		<!--end::Theme mode setup on page load-->
 		<!--begin::Root-->
 		<div class="d-flex flex-column flex-root" id="kt_app_root">
-			<!--begin::Page bg image-->
-			<style>
-				body {
-					background-image: url("<%= image_path('bg17.jpg') %>");
-				}
-
-				[data-bs-theme="dark"] body {
-					background-image: url("<%= image_path('bg17-dark.jpg') %>");
-				}
-			</style>
-			<!--end::Page bg image-->
-
-
-			<!--begin::Authentication - Signup Welcome Message -->
-			<div class="d-flex flex-column flex-center flex-column-fluid">
-				<!--begin::Content-->
-				<div class="d-flex flex-column flex-center text-center p-10">
-					<!--begin::Wrapper-->
-					<div class="card card-flush w-md-650px w-lg-850px py-5">
-						<div class="card-body py-15 py-lg-20">
-							<!-- FLASH START -->
-							<div class="container mt-2">
-								<div class="row">
-									<div class="col">
-										<%= flash_messages %>
-									</div>
-								</div>
-							</div>
-							<!-- FLASH END -->
-							<%= yield %>
-						</div>
+			<!--begin::Authentication - Sign-in -->
+			<div class="d-flex flex-column flex-lg-row flex-column-fluid">
+				<!--begin::Aside-->
+				<div class="d-flex flex-lg-row-fluid w-lg-50 bgi-size-cover bgi-position-center" style="background-image: url(<%= image_path 'auth-bg.png' %>)">
+					<!--begin::Content-->
+					<div class="d-flex flex-column flex-center p-6 p-lg-10 w-100">
+						<!--begin::Logo-->
+						<a href="index.html" class="mb-0 mb-lg-20">
+                            <%= image_tag 'branding/demo/default-white.svg', class: "h-40px h-lg-50px", alt: "Logo" %>
+						</a>
+						<!--end::Logo-->
+						<!--begin::Image-->
+						<img class="d-none d-lg-block mx-auto w-300px w-lg-75 w-xl-500px mb-10 mb-lg-20" src="assets/media/misc/auth-screens.png" alt="" />
+						<!--end::Image-->
+						<!--begin::Title-->
+						<h1 class="d-none d-lg-block text-white fs-2qx fw-bold text-center mb-7">Fast, Efficient and Productive</h1>
+						<!--end::Title-->
+						<!--begin::Text-->
+						<div class="d-none d-lg-block text-white fs-base text-center">In this kind of post, 
+						<a href="#" class="opacity-75-hover text-warning fw-semibold me-1">the blogger</a>introduces a person they’ve interviewed 
+						<br />and provides some background information about 
+						<a href="#" class="opacity-75-hover text-warning fw-semibold me-1">the interviewee</a>and their 
+						<br />work following this is a transcript of the interview.</div>
+						<!--end::Text-->
 					</div>
-					<!--end::Wrapper-->
+					<!--end::Content-->
 				</div>
-				<!--end::Content-->
+				<!--begin::Aside-->
+				<!--begin::Body-->
+                <div class="d-flex flex-column flex-lg-row-fluid w-lg-50 p-10">
+					<!-- FLASH START -->
+                    <div class="container mt-2">
+                        <div class="row">
+                            <div class="col">
+                                <%= flash_messages %>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FLASH END -->
+                    <%= yield %>
+                    <!--begin::Footer-->
+                    <div class="d-flex flex-center flex-wrap px-5">
+                        <!--begin::Links-->
+                        <div class="d-flex fw-semibold text-primary fs-base">
+                            <a href="https://keenthemes.com" class="px-5" target="_blank">Terms</a>
+                            <a href="https://devs.keenthemes.com" class="px-5" target="_blank">Plans</a>
+                            <a href="https://themes.getbootstrap.com/product/keen-the-ultimate-bootstrap-admin-theme/" class="px-5" target="_blank">Contact Us</a>
+                        </div>
+                        <!--end::Links-->
+                    </div>
+                    <!--end::Footer-->
+                </div>
+			    <!--end::Body-->
 			</div>
-			<!--end::Authentication - Signup Welcome Message-->
+			<!--end::Authentication - Sign-in-->
 		</div>
 		<!--end::Root-->
 		<!--begin::Javascript-->

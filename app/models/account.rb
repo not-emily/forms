@@ -1,4 +1,5 @@
 class Account < ApplicationRecord
+  belongs_to :plan, optional: true
   has_many :users, :through => :account_users
   has_many :account_users, :dependent => :destroy
   has_many :projects, :dependent => :destroy

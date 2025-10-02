@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  root "welcome#index"
+  root "projects#index"
 
   #
   # WELCOME 
@@ -21,6 +21,14 @@ Rails.application.routes.draw do
   # ACCOUNTS 
   #
   get '/accounts', to: "accounts#select_accounts", as: :select_accounts
+  get '/accounts/create/step-1', to: "accounts#create_account_1", as: :create_account_1
+  post '/accounts/create/step-1', to: "accounts#create_account_1_do", as: :do_create_account_1
+  get '/accounts/create/step-2', to: "accounts#create_account_2", as: :create_account_2
+  post '/accounts/create/step-2', to: "accounts#create_account_2_do", as: :do_create_account_2
+  get '/accounts/:id/select-plan', to: "accounts#select_plan", as: :select_plan
+  get '/accounts/:account_token/select-plan/:plan_apikey', to: "accounts#select_plan_do", as: :do_select_plan
+  get '/accounts/invite/:invite_apikey/accept', to: 'accounts#accept_invite', as: :accept_invite
+  get '/accounts/invite/:invite_apikey/decline', to: 'accounts#decline_invite', as: :decline_invite
   get '/accounts/:id', to: "accounts#select_accounts_do", as: :do_select_accounts
 
   #

@@ -1,9 +1,6 @@
 class WelcomeController < ApplicationController
     layout 'auth'
 
-    def index
-    end
-
     def signin
     end
 

@@ -1,0 +1,166 @@
+<!--begin::Logo-->
+<div class="mb-7">
+    <a href="/keen/demo1/index.html" class="">
+        <%= image_tag 'branding/demo/default-small.svg', class: "h-40px h-lg-50px", alt: "Logo" %>
+    </a> 
+</div>
+<!--end::Logo-->
+
+<!--begin::Title-->
+<h1 class="fw-bolder text-gray-900 mb-5">Select Plan</h1>
+<!--end::Title--> 
+
+<!--begin::Text-->
+<div class="fw-semibold fs-6 text-gray-500 mb-7">
+    Our plans our designed to help you get in touch with your users
+    <br>
+    without letting your site's performance take a hit.
+</div>
+<!--end::Text--> 
+
+<!--begin::Illustration-->
+<div class="mb-0">
+    <img src="/keen/demo1/assets/media/auth/welcome.png" class="mw-100 mh-300px theme-light-show" alt="">
+    <img src="/keen/demo1/assets/media/auth/welcome-dark.png" class="mw-100 mh-300px theme-dark-show" alt="">
+</div>
+<!--end::Illustration-->   
+<!--begin::Nav-->
+<div class="d-flex justify-content-center">
+    <ul class="nav bg-light rounded-pill px-3 py-2 ms-9 mb-15 w-225px justify-content-center" role="tablist">
+        <!--begin::Nav item-->
+        <li class="nav-item my-1">
+            <button class="nav-link btn btn-active btn-active-dark fw-bold btn-color-gray-600 py-3 px-5 m-1 rounded-pill active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="true">Monthly</button>
+        </li>
+        <!--end::Nav item-->
+        <!--begin::Nav item-->
+        <li class="nav-item my-1">
+            <button class="nav-link btn btn-active btn-active-dark fw-bold btn-color-gray-600 py-3 px-5 m-1 rounded-pill" id="form-builder-tab" data-bs-toggle="tab" data-bs-target="#form-builder" type="button" role="tab" aria-controls="form-builder" aria-selected="false">Annually</button>
+        </li>
+        <!--end::Nav item-->
+    </ul>
+</div>
+<!--end::Nav-->   
+<!--begin::Tab Content-->   
+<div class="tab-content" id="myTabContent">
+    <!-- START OVERVIEW TAB --> 
+    <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+        <div class="row">
+            <% Plan.all.each do |plan| %>
+                <%= render 'accounts/plan_card', plan: plan, interval: :monthly %>
+            <% end %>
+        </div>
+    </div>
+    <!-- END OVERVIEW TAB --> 
+    <!-- START FORM BUILDER TAB --> 
+    <div class="tab-pane fade" id="form-builder" role="tabpanel" aria-labelledby="form-builder-tab">
+        <div class="row">
+            <% Plan.all.each do |plan| %>
+                <%= render 'accounts/plan_card', plan: plan, interval: :yearly %>
+            <% end %>
+        </div>
+    </div>
+    <!-- END FORM BUILDER TAB --> 
+</div>
+
+<h2 class="fw-bolder text-gray-900 mt-6 mb-5">Compare Plans</h2>
+<!--end::Tab Content-->   
+<div class="overflow-x-auto">
+    <table class="table align-middle table-striped gy-7 overflow-x-auto">
+        <thead class="align-middle">
+            <tr id="kt_pricing">
+                <th></th>
+                <% @plans.each do |plan| %>
+                <th class="text-center min-w-200px fs-4 fw-bold text-primary"><%= plan.name %></th>
+                <% end %>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th class="card-rounded-start">
+                    <div class="fw-bold d-flex align-items-center ps-9 fs-4">File Upload</div>
+                </th>
+
+                <% @plans.each do |plan| %>
+                <td>
+                    <div class="flex-root d-flex justify-content-center">
+                        <%= plan.features["file_uploads"] %>
+                    </div>
+                </td>
+                <% end %>
+            </tr>
+            <tr>
+                <th class="card-rounded-start">
+                    <div class="fw-bold d-flex align-items-center ps-9 fs-4">Custom Redirect</div>
+                </th>
+
+                <% @plans.each do |plan| %>
+                <td>
+                    <div class="flex-root d-flex justify-content-center">
+                        <%= plan.features["custom_redirect"] %>
+                    </div>
+                </td>
+                <% end %>
+            </tr>
+            <tr>
+                <th class="card-rounded-start">
+                    <div class="fw-bold d-flex align-items-center ps-9 fs-4">Email from Custom Domain</div>
+                </th>
+
+                <% @plans.each do |plan| %>
+                <td>
+                    <div class="flex-root d-flex justify-content-center">
+                        <%= plan.features["custom_smtp"] %>
+                    </div>
+                </td>
+                <% end %>
+            </tr>
+            <tr>
+                <th class="card-rounded-start">
+                    <div class="fw-bold d-flex align-items-center ps-9 fs-4">Auto-responders</div>
+                </th>
+
+                <% @plans.each do |plan| %>
+                <td>
+                    <div class="flex-root d-flex justify-content-center">
+                        <%= plan.features["autoresponders"] %>
+                    </div>
+                </td>
+                <% end %>
+            </tr>
+            <tr>
+                <th class="card-rounded-start">
+                    <div class="fw-bold d-flex align-items-center ps-9 fs-4">Users</div>
+                </th>
+
+                <% @plans.each do |plan| %>
+                <td>
+                    <div class="flex-root d-flex justify-content-center"><%= plan.display_count(plan.users_count) %></div>
+                </td>
+                <% end %>
+            </tr>
+            <tr>
+                <th class="card-rounded-start">
+                    <div class="fw-bold d-flex align-items-center ps-9 fs-4">Forms</div>
+                </th>
+
+                <% @plans.each do |plan| %>
+                <td>
+                    <div class="flex-root d-flex justify-content-center"><%= plan.display_count(plan.forms_count) %></div>
+                </td>
+                <% end %>
+            </tr>
+            <tr>
+                <th class="card-rounded-start">
+                    <div class="fw-bold d-flex align-items-center ps-9 fs-4">Submissions / mo</div>
+                </th>
+
+                <% @plans.each do |plan| %>
+                <td>
+                    <div class="flex-root d-flex justify-content-center"><%= plan.display_count(plan.submissions_per_month) %></div>
+                </td>
+                <% end %>
+            </tr>
+        </tbody>
+    </table>
+</div>

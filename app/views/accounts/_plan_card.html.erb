@@ -1,0 +1,35 @@
+
+<div class="col-12 col-lg-4 text-center min-w-200px">
+    <div class="min-w-200px <%= 'bg-primary' if plan.basic? %> py-12 card-rounded mb-15">   
+        <div class="<%= plan.basic? ? 'text-white' : 'text-primary' %> fs-3 fw-bold mb-7"><%= plan.name %></div>
+
+        <div class="fs-5x <%= plan.basic? ? 'text-white' : 'fw-semibold lh-sm' %> d-flex justify-content-center align-items-start">
+            <span class="align-self-start fs-2 mt-3">$</span>
+            <%= plan.display_price(interval) %>
+        </div>
+
+        <div class="<%= plan.basic? ? 'text-white' : 'text-muted' %> fw-bold mb-7"><%= interval.to_s.titleize %></div>
+        <div class="<%= plan.basic? ? 'text-white' : 'text-muted' %> fw-bold mb-4"><%= plan.display_count_with_label(plan.users_count, "user") %></div>
+        <div class="<%= plan.basic? ? 'text-white' : 'text-muted' %> fw-bold mb-4"><%= plan.display_count_with_label(plan.forms_count, "form") %></div>
+        <div class="<%= plan.basic? ? 'text-white' : 'text-muted' %> fw-bold mb-4"><%= plan.display_count_with_label(plan.submissions_per_month, "submission") %></div>
+        <div class="<%= plan.basic? ? 'text-white' : 'text-muted' %> fw-bold mb-4">...and more!</div>
+
+        <a href="<%= do_select_plan_path(params[:id], plan.apikey) %>" class="btn <%= plan.basic? ? 'bg-white bg-opacity-20 bg-hover-white text-hover-primary text-white': 'btn-light-primary' %> fw-bold mx-auto mt-4">Select</a>                                
+    </div>
+</div>
+
+<!--<div class="col-12 col-md-4 text-center min-w-200px">
+    <div class="min-w-200px bg-primary card-rounded py-12 mb-15">                               
+        <div class="text-white fs-3 fw-bold mb-7">Pro</div>
+
+        <div class="fs-5x text-white d-flex justify-content-center align-items-start">
+            <span class="fs-2 mt-3">$</span>
+            
+            <span class="lh-sm fw-semibold" data-kt-plan-price-month="99" data-kt-plan-price-annual="399">99</span>                                    
+        </div>
+
+        <div class="text-white fw-bold mb-7">Monthly</div>
+
+        <a href="#" class="btn bg-white bg-opacity-20 bg-hover-white text-hover-primary text-white fw-bold mx-auto">Start</a>                                 
+    </div>
+</div>-->

@@ -3920,7 +3920,7 @@
                                 <% @current_user.accounts.each do |account|%>
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="account/referrals.html" class="menu-link px-5"><%= account.name %></a>
+                                        <a href="<%= do_select_accounts_path(account.token) %>" class="menu-link px-5"><%= account.name %></a>
                                     </div>
                                     <!--end::Menu item-->
                                 <% end %>
@@ -3929,7 +3929,7 @@
                                 <!--end::Menu separator-->
                                 <!--begin::Menu item-->
                                 <div class="menu-item px-3">
-                                    <a href="account/referrals.html" class="menu-link px-5">Create account</a>
+                                    <a href="<%= create_account_1_path %>" class="menu-link px-5">Create account</a>
                                 </div>
                                 <!--end::Menu item-->
                             </div>
