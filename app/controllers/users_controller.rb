@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
     before_action :authenticate_user
     before_action :user_accounts
-    before_action :set_account
-    before_action :set_breadcrumbs, except: [:index]
+    before_action :set_account, except: [:accept_invite, :decline_invite]
+    before_action :set_breadcrumbs, only: [:show, :edit, :new, :invites]
     layout 'dashboard'
 
     # ==============================================================
@@ -98,7 +98,7 @@ class UsersController < ApplicationController
         else
             flash[:error] = "Unable to accept invite. Invite not found."
         end
-        redirect_to select_account_path
+        redirect_to select_accounts_path
     end
     
     def decline_invite
@@ -113,7 +113,7 @@ class UsersController < ApplicationController
         else
             flash[:error] = "Unable to decline invite. Invite not found."
         end
-        redirect_to select_account_path
+        redirect_to select_accounts_path
     end
 
     private

@@ -1,28 +1,19 @@
+<%= render 'layouts/components/invites_notice', invites: @invites %>
 <div class="d-flex flex-center flex-column flex-lg-row-fluid">
     <div class="w-lg-500px p-10">
       <div class="container">
         <div class="col align-items-center">
-          <!--<%= render 'layouts/components/invites_notice', invites: @invites %>-->
-                  <div class="text-center">
-                    <h1 class="h2">Which account?</h1>
-                    <div id="select-accounts" class="row g-2 justify-content-center">
-                      <% @accounts.each do |account_user| %>
-                        <div class="col-12 col-md-6 my-2">
-                          <a href="<%= do_select_accounts_path(account_user.account.token) %>">
-                            <div class="card p-2 h-100 d-flex align-items-center justify-content-center" style="">
-                              <%= account_user.account.name %>
-                              <small class="text-muted"><%= account_user.account.owner.name %></small>
-                            </div>
-                          </a>
-                        </div>
-                      <% end %>
-                    </div>
-                    <hr>
-                    <p class="m-0">or</p>
-                    <a class="btn btn-link" href="<%= create_account_1_path %>">Create a new account</a>
+          <div class="text-center">
+            <h1 class="h2">Which account?</h1>
+            <div id="select-accounts" class="row g-2 justify-content-center">
+              <%= list_accounts %>
+            </div>
+            <hr>
+            <p class="m-0">or</p>
+            <a class="btn btn-link" href="<%= create_account_1_path %>">Create a new account</a>
 
-                  </div>
-              </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

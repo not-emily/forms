@@ -1,0 +1,10 @@
+<% @accounts.each do |account_user| %>
+<div class="col-12 col-md-6 my-2">
+    <a href="<%= do_select_accounts_path(account_user.account.token) %>">
+    <div class="card p-2 h-100 d-flex align-items-center justify-content-center" style="">
+        <%= account_user.account.name %>
+        <small class="text-muted"><%= account_user.account.owner.name %></small>
+    </div>
+    </a>
+</div>
+<% end %>

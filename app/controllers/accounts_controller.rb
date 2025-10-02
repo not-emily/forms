@@ -15,15 +15,15 @@ class AccountsController < ApplicationController
 
     def select_accounts
         @accounts = AccountUser.for_user(@current_user.id)
-        # The user automatically gets an account created for them if they don't have one.
-        if @accounts.empty?
-            if !@current_user.create_default_account()
-                flash[:error] = "Oops! Something went wrong... Please sign in again."
-                redirect_to signin_path
-            end
+        # # The user automatically gets an account created for them if they don't have one.
+        # if @accounts.empty?
+        #     if !@current_user.create_default_account()
+        #         flash[:error] = "Oops! Something went wrong... Please sign in again."
+        #         redirect_to signin_path
+        #     end
 
-            @accounts = AccountUser.for_user(@current_user.id)      # Update accounts since we just made a new one
-        end
+        #     @accounts = AccountUser.for_user(@current_user.id)      # Update accounts since we just made a new one
+        # end
 
         @invites = AccountInvite.for_email(@current_user.email).pending
         if @invites.empty?
@@ -38,7 +38,7 @@ class AccountsController < ApplicationController
         account = Account.find_by_token(params[:id])
         if account && account.active? #only allow active accounts
             session[:current_account] = account
-            redirect_to projects_path
+            redirect_to root_path
         else
             flash[:notice] = "There was a problem selecting that account"
             redirect_to select_accounts_path

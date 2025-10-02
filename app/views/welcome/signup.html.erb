@@ -3,7 +3,7 @@
     <!--begin::Wrapper-->
     <div class="w-lg-500px p-10">
         <!--begin::Form-->
-        <form class="form w-100" novalidate="novalidate" id="kt_sign_up_form" data-kt-redirect-url="authentication/layouts/corporate/sign-in.html" action="#">
+        <%= form_tag(do_signup_path, novalidate: 'novalidate', class: "form w-100") do %>
             <!--begin::Heading-->
             <div class="text-center mb-11">
                 <!--begin::Title-->
@@ -43,9 +43,23 @@
             </div>
             <!--end::Separator-->
             <!--begin::Input group=-->
+            <div class="fv-row mb-8 row">
+                <!--begin::First Name-->
+                <div class="col-md-6 mb-8 mb-md-0">
+                    <input type="text" placeholder="First Name" id="first_name" name="first_name" autocomplete="off" class="form-control bg-transparent" />
+                </div>
+                <!--end::First Name-->
+                <!--begin::Last Name-->
+                <div class="col-md-6">
+                    <input type="text" placeholder="Last Name" id="last_name" name="last_name" autocomplete="off" class="form-control bg-transparent" />
+                </div>
+                <!--end::Last Name-->
+            </div>
+            <!--begin::Input group-->
+            <!--begin::Input group=-->
             <div class="fv-row mb-8">
                 <!--begin::Email-->
-                <input type="text" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent" />
+                <input type="text" placeholder="Email" id="email" name="email" autocomplete="off" class="form-control bg-transparent" />
                 <!--end::Email-->
             </div>
             <!--begin::Input group-->
@@ -54,7 +68,7 @@
                 <div class="mb-1">
                     <!--begin::Input wrapper-->
                     <div class="position-relative mb-3">
-                        <input class="form-control bg-transparent" type="password" placeholder="Password" name="password" autocomplete="off" />
+                        <input class="form-control bg-transparent" type="password" placeholder="Password" id="password" name="password" autocomplete="off" />
                         <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
                             <i class="ki-duotone ki-eye-slash fs-2"></i>
                             <i class="ki-duotone ki-eye fs-2 d-none"></i>
@@ -63,8 +77,8 @@
                     <!--end::Input wrapper-->
                     <!--begin::Meter-->
                     <div class="d-flex align-items-center mb-3" data-kt-password-meter-control="highlight">
-                        <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                        <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
+                        <div class="flex-grow-1 bg-secondary bg-active-danger rounded h-5px me-2"></div>
+                        <div class="flex-grow-1 bg-secondary bg-active-warning rounded h-5px me-2"></div>
                         <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
                         <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px"></div>
                     </div>
@@ -78,9 +92,9 @@
             <!--end::Input group=-->
             <!--end::Input group=-->
             <div class="fv-row mb-8">
-                <!--begin::Repeat Password-->
-                <input placeholder="Repeat Password" name="confirm-password" type="password" autocomplete="off" class="form-control bg-transparent" />
-                <!--end::Repeat Password-->
+                <!--begin::Confirm Password-->
+                <input placeholder="Confirm Password" id="password_confirmation" name="password_confirmation" type="password" autocomplete="off" class="form-control bg-transparent" />
+                <!--end::Confirm Password-->
             </div>
             <!--end::Input group=-->
             <!--begin::Accept-->
@@ -109,7 +123,7 @@
             <div class="text-gray-500 text-center fw-semibold fs-6">Already have an Account? 
             <a href="authentication/layouts/corporate/sign-in.html" class="link-primary fw-semibold">Sign in</a></div>
             <!--end::Sign up-->
-        </form>
+        <% end %>
         <!--end::Form-->
     </div>
     <!--end::Wrapper-->

@@ -27,6 +27,25 @@ class WelcomeController < ApplicationController
     end
 
     def signup_do
+        user = User.new(first_name: params[:first_name],
+                        last_name: params[:last_name],
+                        email: params[:email],
+                        password: params[:password],
+                        password_confirmation: params[:password_confirmation])
+
+        if user.save
+            session[:current_user] = user
+            session[:user_id] = user.apikey
+            session[:expiry_time] = Time.current.to_s
+            #update the user
+            #send the welcome email
+            #ProfileMailer.with(user: user, base_url: Figaro.env.base_url).welcome.deliver_now
+            redirect_to select_accounts_path
+        else
+            p user.errors.full_messages
+            flash[:notice] = "Oops. #{user.errors.full_messages}"
+            redirect_to signup_path
+        end
     end
 
     def signout
