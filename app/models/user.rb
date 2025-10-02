@@ -2,6 +2,7 @@ class User < ApplicationRecord
   attr_accessor :password, :password_confirmation, :new_password
 
   has_many :account_users, :dependent => :destroy
+  has_many :accounts, :through => :account_users
 
   validates_presence_of          :first_name
 
@@ -58,6 +59,12 @@ class User < ApplicationRecord
 
   def name
     return "#{self.first_name} #{self.last_name}"
+  end
+
+  def admin?(account_id)
+    return false if account_id.nil?
+    account_user = AccountUser.for_user(self.id).for_account(account_id).first
+    return account_user.present? && account_user.admin?
   end
 
   def generate_reset_token
