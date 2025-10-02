@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   # PROJECTS 
   #
   get '/projects', to: "projects#index", as: :projects
+  get '/projects/new', to: "projects#new", as: :new_project
+  post '/projects/create', to: "projects#create", as: :do_create_project
   get '/projects/:project_apikey', to: "projects#show", as: :show_project
 
   #

@@ -1,8 +1,10 @@
 class Account < ApplicationRecord
   belongs_to :plan, optional: true
-  has_many :users, :through => :account_users
   has_many :account_users, :dependent => :destroy
+  has_many :users, :through => :account_users
   has_many :projects, :dependent => :destroy
+  has_many :custom_forms, :through => :projects
+  has_many :form_submissions, :through => :custom_forms
 
   has_one_attached :logo
 

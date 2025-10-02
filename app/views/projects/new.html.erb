@@ -1,0 +1,25 @@
+<div class="d-flex flex-center flex-column flex-lg-row-fluid">
+    <div class="w-lg-500px p-10">
+        <div class="container">
+            <div class="col align-items-center">
+                <div class="text-center">
+                    <div class="p-3 pb-md-4 mx-auto text-center">
+                        <div class="text-center mb-11">
+                            <!--begin::Title-->
+                            <h1 class="h2 mb-3">Project Name</h1>
+                            <!--end::Title-->
+                            <!--begin::Subtitle-->
+                            <div class="text-gray-500 fw-semibold fs-6">Your Social Campaigns</div>
+                            <!--end::Subtitle=-->
+                        </div>
+                    </div>
+                    <%= form_tag(do_create_project_path, method: :post) do %>
+                        <input class="form-control mb-3" type="text" id="name" name="name" placeholder="Personal, The Jonses, ACME Inc., etc..." />
+                        <textarea class="form-control mb-3" id="description" name="description" placeholder="Marketing campaign for ACME Inc." ></textarea>
+                        <button type="submit" class="w-100 btn btn-lg btn-primary">Next</button>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

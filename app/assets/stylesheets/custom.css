@@ -27,3 +27,18 @@
         }
     }
 }
+
+.btn.btn-sm.btn-icon.btn-bg-light.btn-active-color-primary {
+    & svg {
+        & path {
+            fill: var(--bs-text-muted);
+        }
+    }
+    &:hover {
+        & svg {
+            & path {
+                fill: var(--bs-text-primary);
+            }
+        }
+    }
+}
