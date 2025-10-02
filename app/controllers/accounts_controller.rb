@@ -83,16 +83,22 @@ class AccountsController < ApplicationController
     end
 
     def select_plan
-        account = Account.find_by_token(params[:id])
+        @account = Account.find_by_token(params[:id])
         @plans = Plan.all
     end
 
     def select_plan_do
         account = Account.find_by_token(params[:account_token])
+        plan_upgrade = account.plan_id?    # check to see if this is upgrading from a previous plan
         plan = Plan.find_by_apikey(params[:plan_apikey])
         if account && plan
             account.update(plan_id: plan.id)
             # TODO: Capture payment
+            if plan_upgrade
+                flash[:success] = "Plan changed successfully. Enjoy!"
+            else
+                flash[:success] = "Plan selected successfully."
+            end
             redirect_to root_path
         else
             flash[:notice] = "There was a problem selecting that plan"

@@ -4,7 +4,7 @@
             <div class="col align-items-center">
                 <div class="text-center">
                     <div class="p-3 pb-md-4 mx-auto text-center">
-                        <div class="text-center mb-11">
+                        <div class="text-center mb-8">
                             <!--begin::Title-->
                             <h1 class="h2 mb-3">Invite New User</h1>
                             <!--end::Title-->
@@ -13,10 +13,7 @@
                             <!--end::Subtitle=-->
                         </div>
                     </div>
-                    <%= form_tag(do_new_user_path, method: :post) do %>
-                        <input class="form-control mb-3" type="text" id="email" name="email" placeholder="johndoe@email.com" />
-                        <button type="submit" class="w-100 btn btn-lg btn-primary">Next</button>
-                    <% end %>
+                    <%= new_invite %>
                 </div>
             </div>
         </div>

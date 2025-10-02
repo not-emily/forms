@@ -14,7 +14,7 @@
         <div class="<%= plan.basic? ? 'text-white' : 'text-muted' %> fw-bold mb-4"><%= plan.display_count_with_label(plan.submissions_per_month, "submission") %></div>
         <div class="<%= plan.basic? ? 'text-white' : 'text-muted' %> fw-bold mb-4">...and more!</div>
 
-        <a href="<%= do_select_plan_path(params[:id], plan.apikey) %>" class="btn <%= plan.basic? ? 'bg-white bg-opacity-20 bg-hover-white text-hover-primary text-white': 'btn-light-primary' %> fw-bold mx-auto mt-4">Select</a>                                
+        <a href="<%= do_select_plan_path(@account.token, plan.apikey) %>" class="btn <%= plan.basic? ? 'bg-white bg-opacity-20 bg-hover-white text-hover-primary text-white': 'btn-light-primary' %> fw-bold mx-auto mt-4 <%= 'disabled' if @account.plan.apikey == plan.apikey %>" ><%= @account.plan.apikey == plan.apikey ? 'Current Plan' : 'Select' %></a>
     </div>
 </div>
 
