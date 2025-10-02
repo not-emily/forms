@@ -1,4 +1,14 @@
 class ApplicationController < ActionController::Base
+    helper_method :breadcrumbs
+
+    def breadcrumbs
+        @breadcrumbs ||= []
+    end
+
+    def add_breadcrumb(name, path = nil)
+        breadcrumbs << Breadcrumb.new(name, path)
+    end
+
     def user_accounts
         @accounts_for_user = AccountUser.for_user(@current_user.id)
     end

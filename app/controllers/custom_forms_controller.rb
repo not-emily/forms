@@ -2,6 +2,7 @@ class CustomFormsController < ApplicationController
     before_action :authenticate_user
     before_action :user_accounts
     before_action :set_account
+    before_action :set_breadcrumbs
     layout 'dashboard'
 
     #
@@ -15,6 +16,7 @@ class CustomFormsController < ApplicationController
     def show
         @form = CustomForm.find_by_apikey(params[:form_apikey])
         @form_fields = FormField.for_form(@form.id).order(order_num: :asc)
+        add_breadcrumb(@form.name)
 
     end
 
@@ -101,6 +103,8 @@ class CustomFormsController < ApplicationController
     def edit_form_field
         @form = CustomForm.find_by_apikey(params[:form_apikey])
         @field = FormField.find_by_apikey(params[:form_field_apikey])
+        add_breadcrumb(@form.name, show_form_path(params[:project_apikey], @form.apikey))
+        add_breadcrumb('Edit form field')
     end
 
     def update_form_field
@@ -165,6 +169,12 @@ class CustomFormsController < ApplicationController
     end
 
     private
+
+    def set_breadcrumbs
+        add_breadcrumb(@current_account.name, root_path)
+        project = Project.find_by_apikey(params[:project_apikey])
+        add_breadcrumb(project.name, show_project_path(project.apikey))
+    end
 
     def form_field_params
         params.permit(:name, :field_type, :col_width, :required, :placeholder, :label_as_placeholder)
